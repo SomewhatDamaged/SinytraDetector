@@ -22,7 +22,7 @@ def find_sinytra():
                         print(f"File: '{file}' has Sinytra")
                         files.append(file)
     datum = input("Save to a file? (y/n): ")
-    if datum.startswith("y"):
+    if datum.lower().startswith("y"):
         with open('./SinytraFiles.txt', 'w') as f:
             f.write("Files containing Sinytra:\n")
             for file in files:
