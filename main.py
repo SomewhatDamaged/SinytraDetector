@@ -17,7 +17,8 @@ def find_sinytra():
             if "META-INF/jarjar/metadata.json" in zip_ref.namelist():
                 with zip_ref.open(name="META-INF/jarjar/metadata.json", mode="r") as zip_file:
                     if "org.sinytra.forgified-fabric-api" in zip_file.read().decode("utf-8"):
-                        print(f"File: '{str(path).rsplit('\\', 1)[-1]}' has Sinytra")
+                        file = str(path).rsplit('\\', 1)[-1]
+                        print(f"File: '{file}' has Sinytra")
 
 
 if __name__ == '__main__':
