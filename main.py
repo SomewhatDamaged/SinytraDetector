@@ -12,6 +12,7 @@ def find_sinytra():
         os.makedirs('./jars/')
         print("Created 'jars' folder. Put jar files in there to test.")
         return
+    files = []
     for path in get_cwd():
         with zipfile.ZipFile(path, 'r') as zip_ref:
             if "META-INF/jarjar/metadata.json" in zip_ref.namelist():
@@ -19,7 +20,16 @@ def find_sinytra():
                     if "org.sinytra.forgified-fabric-api" in zip_file.read().decode("utf-8"):
                         file = str(path).rsplit('\\', 1)[-1]
                         print(f"File: '{file}' has Sinytra")
-
+                        files.append(file)
+    datum = input("Save to a file? (y/n): ")
+    if datum.startswith("y"):
+        with open('./SinytraFiles.txt', 'w') as f:
+            f.write("Files containing Sinytra:\n")
+            for file in files:
+                f.write(file + "\n")
+        print("File saved: SinytraFiles.txt")
+        return
+    input("Done. Press enter to continue...")
 
 if __name__ == '__main__':
     find_sinytra()
